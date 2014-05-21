@@ -3,34 +3,35 @@
 #environment so that repetitive calculations are not performed
 
 ## The makeCacheMatrix function stores a matrix input by the user, clears any
-#existing cache, and communicates with casheSolve() to send any newly
+#existing cache, and communicates with cacheSolve() to send any newly
 #calculated inverse values to cache
 
 makeCacheMatrix <- function(x = matrix()) {
+      
 
-            #initialize cache for this function
-            cache <- NULL
+      #initialize cache for this function
+      cache <- NULL
             
-            #user defines matrix, existing cache is cleared
-            set <- function(y) {
-                  x <<- y
-                  cache <<- NULL 
-            }
+      #user defines matrix, existing cache is cleared
+      set <- function(y) {
+            x <<- y
+            cache <<- NULL 
+      }
             
-            #returns user defined matrix, x
-            get <- function() x
+      #returns user defined matrix, x
+      get <- function() x
             
-            #used to cache the inverse calculated in cacheSolve() by storing
-            #the variable in the parent environment
-            setinverse <- function(inverse) cache <<- inverse
+      #used to cache the inverse calculated in cacheSolve() by storing
+      #the variable in the parent environment
+      setinverse <- function(inverse) cache <<- inverse
            
-            #function to retrieve the variable cache for use in cacheSolve()
-            getinverse <- function() cache
+      #function to retrieve the variable cache for use in cacheSolve()
+      getinverse <- function() cache
             
-            #returns a list of all functions defined in makeCacheMatrix()
-            list(set = set, get = get,
-                 setinverse = setinverse,
-                 getinverse = getinverse)
+      #returns a list of all functions defined in makeCacheMatrix()
+      list(set = set, get = get,
+           setinverse = setinverse,
+           getinverse = getinverse)
 }
 
 ## The cacheSolve function retrieves whatever value is stored in the cache:i) If 
